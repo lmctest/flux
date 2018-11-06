@@ -47,7 +47,7 @@ spec:
         emptyDir:
           medium: Memory
       containers:
-        - name: "fluxcloud"
+        - name: fluxcloud
           image: {{ .Values.fluxcloud.repository }}:{{ .Values.fluxcloud.tag }}
           imagePullPolicy: {{ .Values.fluxcloud.pullPolicy }}
           ports:

@@ -19,12 +19,12 @@ fluxcloud:
   tag: v0.2.11
   pullPolicy: IfNotPresent
   slack:
-    hookUrl: ""               # "https://hooks.slack.com/services/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"
-    channel: ""               # "#weave-flux-notif"
-    username: "Flux Operator" # "Flux Operator"
-    emoji: ":ghost:"          # ":ghost:"
-    gitUrl: ""                # "https://github.com/lmctest/flux-example"
-    exporterType: "slack"     # "slack"  
+    hookUrl: ""
+    channel: ""
+    username: "Flux Operator"
+    emoji: ":ghost:"
+    gitUrl: ""
+    exporterType: "slack"
 
 helmOperator:
   create: false
