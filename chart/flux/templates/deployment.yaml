@@ -47,26 +47,24 @@ spec:
         emptyDir:
           medium: Memory
       containers:
-        # fluxcloud sidecar for slack notifications
         - name: "fluxcloud"
-          image: "{{ .Values.fluxcloud.repository }}:{{ .Values.fluxcloud.tag }}"
+          image: {{ .Values.fluxcloud.repository }}:{{ .Values.fluxcloud.tag }}
           imagePullPolicy: {{ .Values.fluxcloud.pullPolicy }}
           ports:
           - containerPort: 3031
           env:
-            - name: SLACK_URL
-              value: {{ .Values.fluxcloud.slack.hookUrl }}
-            - name: SLACK_CHANNEL
-              value: {{ .Values.fluxcloud.slack.channel }}
-            - name: SLACK_USERNAME
-              value: {{ .Values.fluxcloud.slack.username }}
-            - name: SLACK_ICON_EMOJI
-              value: {{ .Values.fluxcloud.slack.emoji }}
-            - name: GITHUB_URL
-              value: {{ .Values.fluxcloud.slack.gitUrl }}
-            - name: EXPORTER_TYPE
-              value: {{ .Values.fluxcloud.slack.exporterType }}
-
+          - name: SLACK_URL
+            value: {{ .Values.fluxcloud.slack.hookUrl }}
+          - name: SLACK_CHANNEL
+            value: {{ .Values.fluxcloud.slack.channel }}
+          - name: SLACK_USERNAME
+            value: {{ .Values.fluxcloud.slack.username }}
+          - name: SLACK_ICON_EMOJI
+            value: {{ .Values.fluxcloud.slack.emoji }}
+          - name: GITHUB_URL
+            value: {{ .Values.fluxcloud.slack.gitUrl }}
+          - name: EXPORTER_TYPE
+            value: {{ .Values.fluxcloud.slack.exporterType }}
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}

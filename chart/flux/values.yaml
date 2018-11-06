@@ -10,8 +10,12 @@ image:
   tag: 1.8.0
   pullPolicy: IfNotPresent
 
+service:
+  type: ClusterIP
+  port: 3030
+
 fluxcloud:
-  repository: justinbarrick/fluxcloud
+  repository: registry.hub.docker.com/justinbarrick/fluxcloud
   tag: v0.2.11
   pullPolicy: IfNotPresent
   slack:
@@ -21,10 +25,6 @@ fluxcloud:
     emoji: ":ghost:"          # ":ghost:"
     gitUrl: ""                # "https://github.com/lmctest/flux-example"
     exporterType: "slack"     # "slack"  
-
-service:
-  type: ClusterIP
-  port: 3030
 
 helmOperator:
   create: false
