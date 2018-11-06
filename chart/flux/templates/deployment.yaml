@@ -54,20 +54,15 @@ spec:
           - containerPort: 3031
           env:
           - name: SLACK_URL
-            value: "https://hooks.slack.com/services/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"
+            value: {{ .Values.slack.hookUrl }}
           - name: SLACK_CHANNEL
-            value: {{ .Values.slack.channel }}       # "#weave-flux-notif"
-
-          # Or configure multiple channels
-          # (comma separated <channel>=<namespace>) string:
-          #  value: "#kubernetes=*,#team=team"
-
+            value: {{ .Values.slack.channel }}       
           - name: SLACK_USERNAME
             value: {{ .Values.slack.username }}      # "Flux Operator"
           - name: SLACK_ICON_EMOJI
             value: {{ .Values.slack.emoji }}         # ":ghost:"
           - name: GITHUB_URL
-            value: {{ .Values.slack.gitUrl }}       # "https://github.com/lmctest/flux-example.git"
+            value: {{ .Values.slack.gitUrl }}
           - name: EXPORTER_TYPE
             value: {{ .Values.slack.exporterType }} # "slack"
 
