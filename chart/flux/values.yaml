@@ -176,7 +176,7 @@ kube:
     preferences: {}
     users: []
 #for https://github.com/justinbarrick/fluxcloud/
-#additionalArgs:
+additionalArgs:
 - --connect="ws://127.0.0.1:3031/"
 
 # Additional environment variables to set
