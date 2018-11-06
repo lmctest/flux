@@ -49,27 +49,27 @@ spec:
       containers:
         # fluxcloud sidecar for slack notifications
         - name: "fluxcloud"
-          image: justinbarrick/fluxcloud:v0.2.11
-          imagePullPolicy: IfNotPresent
+          image: "{{ .Values.fluxcloud.repository }}:{{ .Values.fluxcloud.tag }}"
+          imagePullPolicy: {{ .Values.fluxcloud.pullPolicy }}
           ports:
           - containerPort: 3031
           env:
             - name: SLACK_URL
-              value: {{ .Values.slack.hookUrl }}
+              value: {{ .Values.fluxcloud.slack.hookUrl }}
             - name: SLACK_CHANNEL
-              value: {{ .Values.slack.channel }}
+              value: {{ .Values.fluxcloud.slack.channel }}
             - name: SLACK_USERNAME
-              value: {{ .Values.slack.username }}
+              value: {{ .Values.fluxcloud.slack.username }}
             - name: SLACK_ICON_EMOJI
-              value: {{ .Values.slack.emoji }}
+              value: {{ .Values.fluxcloud.slack.emoji }}
             - name: GITHUB_URL
-              value: {{ .Values.slack.gitUrl }}
+              value: {{ .Values.fluxcloud.slack.gitUrl }}
             - name: EXPORTER_TYPE
-              value: {{ .Values.slack.exporterType }}
+              value: {{ .Values.fluxcloud.slack.exporterType }}
 
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.flux.repository }}:{{ .Values.image.flux.tag }}"
-          imagePullPolicy: {{ .Values.image.flux.pullPolicy }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
           - name: http
             containerPort: 3030
