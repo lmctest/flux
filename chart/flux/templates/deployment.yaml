@@ -49,22 +49,22 @@ spec:
         # fluxcloud sidecar for slack notifications
         - name: fluxcloud
           image: "{{ .Values.image.fluxcloud.repository }}:{{ .Values.image.fluxcloud.tag }}"
-          imagePullPolicy: {{ .Values.image.fluxcloud.pullPolicy }}
+#          imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 3031
           env:
           - name: SLACK_URL
             value: {{ .Values.slack.hookUrl }}
           - name: SLACK_CHANNEL
-            value: {{ .Values.slack.channel }}       
+            value: {{ .Values.slack.channel }}
           - name: SLACK_USERNAME
-            value: {{ .Values.slack.username }}      # "Flux Operator"
+            value: {{ .Values.slack.username }}
           - name: SLACK_ICON_EMOJI
-            value: {{ .Values.slack.emoji }}         # ":ghost:"
+            value: {{ .Values.slack.emoji }}
           - name: GITHUB_URL
             value: {{ .Values.slack.gitUrl }}
           - name: EXPORTER_TYPE
-            value: {{ .Values.slack.exporterType }} # "slack"
+            value: {{ .Values.slack.exporterType }}
 
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.flux.repository }}:{{ .Values.image.flux.tag }}"
