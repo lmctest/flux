@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
@@ -47,24 +48,24 @@ spec:
           medium: Memory
       containers:
         # fluxcloud sidecar for slack notifications
-        - name: fluxcloud
-          image: "{{ .Values.image.fluxcloud.repository }}:{{ .Values.image.fluxcloud.tag }}"
-#          imagePullPolicy: IfNotPresent
+        - name: "fluxcloud"
+          image: justinbarrick/fluxcloud:v0.2.11
+          imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 3031
           env:
-          - name: SLACK_URL
-            value: {{ .Values.slack.hookUrl }}
-          - name: SLACK_CHANNEL
-            value: {{ .Values.slack.channel }}
-          - name: SLACK_USERNAME
-            value: {{ .Values.slack.username }}
-          - name: SLACK_ICON_EMOJI
-            value: {{ .Values.slack.emoji }}
-          - name: GITHUB_URL
-            value: {{ .Values.slack.gitUrl }}
-          - name: EXPORTER_TYPE
-            value: {{ .Values.slack.exporterType }}
+            - name: SLACK_URL
+              value: {{ .Values.slack.hookUrl }}
+            - name: SLACK_CHANNEL
+              value: {{ .Values.slack.channel }}
+            - name: SLACK_USERNAME
+              value: {{ .Values.slack.username }}
+            - name: SLACK_ICON_EMOJI
+              value: {{ .Values.slack.emoji }}
+            - name: GITHUB_URL
+              value: {{ .Values.slack.gitUrl }}
+            - name: EXPORTER_TYPE
+              value: {{ .Values.slack.exporterType }}
 
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.flux.repository }}:{{ .Values.image.flux.tag }}"
