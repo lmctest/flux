@@ -6,9 +6,14 @@ token: ""
 replicaCount: 1
 
 image:
-  repository: quay.io/weaveworks/flux
-  tag: 1.8.0
-  pullPolicy: IfNotPresent
+  flux:
+    repository: quay.io/weaveworks/flux
+    tag: 1.8.0
+    pullPolicy: IfNotPresent
+  fluxcloud:
+    repository: justinbarrick/fluxcloud
+    tag: v0.2.11
+    pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
@@ -95,6 +100,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+slack:
+  hook_url: "https://hooks.slack.com/services/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"
+  channel: "#weave-flux-notif"
+  username: "Flux Operator"
+  emoji: ":ghost:"
+  git_url: "https://github.com/lmctest/flux-example"
+  exporter_type: "slack"
 
 git:
   # URL of git repo with Kubernetes manifests; e.g. git.url=ssh://git@github.com/weaveworks/flux-example

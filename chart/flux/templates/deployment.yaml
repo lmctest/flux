@@ -48,32 +48,32 @@ spec:
       containers:
         # fluxcloud sidecar for slack notifications
         - name: fluxcloud
-          image: justinbarrick/fluxcloud:v0.2.11
-          imagePullPolicy: Always
+          image: "{{ .Values.image.fluxcloud.repository }}:{{ .Values.image.fluxcloud.tag }}" # justinbarrick/fluxcloud:v0.2.11
+          imagePullPolicy: {{ .Values.image.fluxcloud.pullPolicy }}
           ports:
           - containerPort: 3031
           env:
           - name: SLACK_URL
-            value: "https://hooks.slack.com/services/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"
+            value: {{ .Values.slack.hook_url }}      # "https://hooks.slack.com/services/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"
           - name: SLACK_CHANNEL
-            value: "#weave-flux-notif"
+            value: {{ .Values.slack.channel }}       # "#weave-flux-notif"
 
           # Or configure multiple channels
           # (comma separated <channel>=<namespace>) string:
           #  value: "#kubernetes=*,#team=team"
 
           - name: SLACK_USERNAME
-            value: "Flux Operator"
+            value: {{ .Values.slack.username }}      # "Flux Operator"
           - name: SLACK_ICON_EMOJI
-            value: ":ghost:"
+            value: {{ .Values.slack.emoji }}         # ":ghost:"
           - name: GITHUB_URL
-            value: "https://github.com/lmctest/flux-example.git"
+            value: {{ .Values.slack.git_url }}       # "https://github.com/lmctest/flux-example.git"
           - name: EXPORTER_TYPE
-            value: "slack"          
+            value: {{ .Values.slack.exporter_type }} # "slack"
 
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.flux.repository }}:{{ .Values.image.flux.tag }}"
+          imagePullPolicy: {{ .Values.image.flux.pullPolicy }}
           ports:
           - name: http
             containerPort: 3030
