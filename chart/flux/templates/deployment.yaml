@@ -48,7 +48,7 @@ spec:
       containers:
         # fluxcloud sidecar for slack notifications
         - name: fluxcloud
-          image: "{{ .Values.image.fluxcloud.repository }}:{{ .Values.image.fluxcloud.tag }}" # justinbarrick/fluxcloud:v0.2.11
+          image: "{{ .Values.image.fluxcloud.repository }}:{{ .Values.image.fluxcloud.tag }}"
           imagePullPolicy: {{ .Values.image.fluxcloud.pullPolicy }}
           ports:
           - containerPort: 3031
