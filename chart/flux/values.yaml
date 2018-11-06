@@ -177,7 +177,7 @@ kube:
     users: []
 #for https://github.com/justinbarrick/fluxcloud/
 #additionalArgs:
-# - --connect=ws://fluxcloud
+- --connect=ws://fluxcloud
 
 # Additional environment variables to set
 extraEnvs: []
