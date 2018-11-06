@@ -54,7 +54,7 @@ spec:
           - containerPort: 3031
           env:
           - name: SLACK_URL
-            value: {{ .Values.slack.hookUrl }}      # "https://hooks.slack.com/services/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"
+            value: "https://hooks.slack.com/services/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"
           - name: SLACK_CHANNEL
             value: {{ .Values.slack.channel }}       # "#weave-flux-notif"
 
